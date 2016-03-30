@@ -3,13 +3,37 @@ using System.Collections;
 
 public class Button : MonoBehaviour
 {
-    bool active;
+    public bool active;
+    bool canChange;
 
-    void OnTriggerStay2D(Collider2D other)
+    SpriteRenderer renderer;
+
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        renderer = GetComponent<SpriteRenderer>();
+    }
+
+    void Update()
+    {
+        if (canChange && Input.GetKeyDown(KeyCode.E))
         {
             active = !active;
         }
+
+        if (active)
+            renderer.color = Color.green;
+
+        else
+            renderer.color = Color.red;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        canChange = true;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        canChange = false;
     }
 }
