@@ -3,30 +3,32 @@ using System.Collections;
 
 public class DistanceToPlayerTopDown : MonoBehaviour
 {
-    GameObject player;
     float distance;
+    float distanceToProjectile;
     SpriteRenderer sprite;
-    public float distanceForPlatformToAppear = 5f;
-
+    //public float distanceForPlatformToAppear = 5f;
 
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        distance = Vector2.Distance(transform.position, player.transform.position);
-
+        distance = Vector2.Distance(transform.position, VisionPreferences.playerTransform.position);
+        if (VisionPreferences.visionProjectile)
+            if (VisionPreferences.projectileTransform != null)
+                distanceToProjectile = Vector2.Distance(transform.position, VisionPreferences.projectileTransform.position);
+        if (VisionPreferences.visionProjectile == false)
+            distanceToProjectile = Mathf.Infinity;
     }
 
 
     void FixedUpdate()
     {
-        if (distance < distanceForPlatformToAppear)
+        if (distance < VisionPreferences.distanceForPlatformToAppear || VisionPreferences.distanceForPlatformToAppear > distanceToProjectile)
             ShowPlatform();
         else
             HidePlatform();
