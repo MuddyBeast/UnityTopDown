@@ -18,7 +18,7 @@ public class Button : MonoBehaviour
     {
         if (canChange && Input.GetKeyDown(KeyCode.E))
         {
-            if (!multipleSwitches)
+            if (multipleSwitches)
                 active = !active;
 
             else
