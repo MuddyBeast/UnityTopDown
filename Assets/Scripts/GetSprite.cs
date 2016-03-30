@@ -8,8 +8,8 @@ public class GetSprite : MonoBehaviour
     public DistanceToPlayerTopDown distanceToPlayer;
     public bool isInvis = true;
 
-    float posX = 0;
-    float posY = 0;
+    float posX;
+    float posY;
 
     
     public float swapY = 24;
@@ -19,10 +19,13 @@ public class GetSprite : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    { 
+    {
+        posX = transform.position.x;
+        posY = transform.position.y;
+
         sprites = Resources.LoadAll<Sprite>("Gräs");
         moveInX = sprites[0].bounds.size.x;
-        swapYCalculated = swapY * moveInX;
+        swapYCalculated = (swapY * moveInX) + transform.position.x;
 
         for (int i = 0; i < sprites.Length; i++)
         {
@@ -38,7 +41,8 @@ public class GetSprite : MonoBehaviour
             posX += moveInX;
             if (posX > swapYCalculated)
             {
-                posX = 0;
+                posX = transform.position.x;
+                //posX = 0;
                 posY -= moveInX;
             }
 
