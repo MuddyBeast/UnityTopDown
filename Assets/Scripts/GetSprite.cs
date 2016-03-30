@@ -15,11 +15,11 @@ public class GetSprite : MonoBehaviour
     public float swapY = 24;
     float swapYCalculated;
  
-    float moveInX = 5;
+    float moveInX;
 
     // Use this for initialization
     void Start()
-    {
+    { 
         sprites = Resources.LoadAll<Sprite>("Gräs");
         moveInX = sprites[0].bounds.size.x;
         swapYCalculated = swapY * moveInX;
