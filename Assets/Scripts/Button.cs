@@ -4,6 +4,7 @@ using System.Collections;
 public class Button : MonoBehaviour
 {
     public bool active;
+    public bool multipleSwitches;
     bool canChange;
 
     SpriteRenderer renderer;
@@ -17,7 +18,15 @@ public class Button : MonoBehaviour
     {
         if (canChange && Input.GetKeyDown(KeyCode.E))
         {
-            active = !active;
+            if (!multipleSwitches)
+                active = !active;
+
+            else
+            {
+                if (!active)
+                    active = !active;
+
+            }
         }
 
         if (active)
