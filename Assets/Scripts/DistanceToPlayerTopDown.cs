@@ -28,10 +28,18 @@ public class DistanceToPlayerTopDown : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (distance < VisionPreferences.distanceForPlatformToAppear || VisionPreferences.distanceForPlatformToAppear > distanceToProjectile)
+        if (distance < VisionPreferences.distanceForPlatformToAppear)
             ShowPlatform();
+        else if (VisionPreferences.visionProjectile)
+        {
+            if (VisionPreferences.distanceForPlatformToAppear - 2 > distanceToProjectile)
+                ShowPlatform();
+            else
+                HidePlatform();
+        }
         else
             HidePlatform();
+
     }
 
     void ShowPlatform()
