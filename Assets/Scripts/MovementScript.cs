@@ -4,6 +4,8 @@ using System.Collections;
 public class MovementScript : MonoBehaviour
 {
     Rigidbody2D rb;
+    public Sprite[] sprites;
+    private SpriteRenderer renderer;
 
     public float startingSpeed;
     float currentSpeed;
@@ -16,6 +18,7 @@ public class MovementScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        renderer = GetComponent<SpriteRenderer>();
         currentSpeed = startingSpeed;
     }
 
@@ -57,7 +60,11 @@ public class MovementScript : MonoBehaviour
         if (h == 0 && v == 0)
             currentSpeed = startingSpeed;
 
+        if (v > 0)
+            renderer.sprite = sprites[0];
 
+        if (v < 0)
+            renderer.sprite = sprites[1];
 
         //if (Input.GetAxisRaw("Horizontal") > 0)
         //{
