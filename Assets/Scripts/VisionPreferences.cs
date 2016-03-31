@@ -3,7 +3,7 @@ using System.Collections;
 
 public class VisionPreferences : MonoBehaviour {
     static public Transform playerTransform;
-    static public float distanceForPlatformToAppear = 5f;
+    static public float distanceForPlatformToAppear = 12f;
     static public bool visionProjectile = false;
     static public Transform projectileTransform;
 
